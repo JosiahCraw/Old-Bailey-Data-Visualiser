@@ -1,0 +1,18 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+.to-span {
+  margin-right: 10%;
+}
+
+a {
+  color: #00B7FF;
+}
+
+.scrollable-menu {
+  height: auto;
+  max-height: 250px;
+  overflow-x: hidden;
+}

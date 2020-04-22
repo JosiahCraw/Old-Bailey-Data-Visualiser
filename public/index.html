@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+      <meta charset="UTF-8">
+      <title>Old Bailey Data Visualizer</title>
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+      <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+      <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+      <link rel="stylesheet" href="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.css">
+      <script src="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
+      <link rel="stylesheet" href="./stylesheets/chartist-plugin-tooltip.css">
+      <script src="javascripts/chartist-min.js"></script>
+
+      <script src="https://kit.fontawesome.com/40f2ff26ac.js" crossorigin="anonymous"></script>
+
+      <script src="javascripts/main.js"></script>
+    </head>
+
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-balance-scale-left"></i>
+                Old Bailey Visualizer
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+          
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav mr-auto">
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Crime
+                  </a>
+                  <div class="dropdown-menu scrollable-menu" id="crime-dropdown" value="" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item crime-item" value="" href="#">All</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item crime-item" value="breakingPeace" href="#">Breaking Peace - All</a>
+                    <a class="dropdown-item crime-item" value="breakingPeace_assault" href="#">Breaking Peace - Assault</a>
+                    <a class="dropdown-item crime-item" value="breakingPeace_barratry" href="#">Breaking Peace - Barratry</a>
+                    <a class="dropdown-item crime-item" value="breakingPeace_libel" href="#">Breaking Peace - Libel</a>
+                    <a class="dropdown-item crime-item" value="breakingPeace_riot" href="#">Breaking Peace - Riot</a>
+                    <a class="dropdown-item crime-item" value="breakingPeace_threateningBehaviour" href="#">Breaking Peace - Threatening Behaviour</a>
+                    <a class="dropdown-item crime-item" value="breakingPeace_vagabond" href="#">Breaking Peace - Vagabonding</a>
+                    <a class="dropdown-item crime-item" value="breakingPeace_wounding" href="#">Breaking Peace - Wounding</a>
+                    <a class="dropdown-item crime-item" value="breakingPeace_other" href="#">Breaking Peace - Other</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item crime-item" value="damage" href="#">Damage - All</a>
+                    <a class="dropdown-item crime-item" value="damage_arson" href="#">Damage - Arson</a>
+                    <a class="dropdown-item crime-item" value="damage_other" href="#">Damage - Other</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item crime-item" value="deception" href="#">Deception - All</a>
+                    <a class="dropdown-item crime-item" value="deception_bankrupcy" href="#">Deception - Bankrupcy</a>
+                    <a class="dropdown-item crime-item" value="deception_forgery" href="#">Deception - Forgery</a>
+                    <a class="dropdown-item crime-item" value="deception_fraud" href="#">Deception - Fraud</a>
+                    <a class="dropdown-item crime-item" value="deception_perjury" href="#">Deception - Perjury</a>
+                    <a class="dropdown-item crime-item" value="deception_other" href="#">Deception - Other</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item crime-item" value="kill" href="#">Killing - All</a>
+                    <a class="dropdown-item crime-item" value="kill_infanticide" href="#">Killing - Infanticide</a>
+                    <a class="dropdown-item crime-item" value="kill_manslaughter">Killing - manslaughter</a>
+                    <a class="dropdown-item crime-item" value="kill_murder">Killing - Murder</a>
+                    <a class="dropdown-item crime-item" value="kill_pettyTreason">Killing - Petty Treason</a>
+                    <a class="dropdown-item crime-item" value="kill_other">Killing - Other</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item crime-item" value="miscellaneous">Miscellaneous - All</a>
+                    <a class="dropdown-item crime-item" value="miscellaneous_concealingABirth">Miscellaneous - Concealing a Birth</a>
+                    <a class="dropdown-item crime-item" value="miscellaneous_conspiracy">Miscellaneous - Conspiracy</a>
+                    <a class="dropdown-item crime-item" value="miscellaneous_habitualCriminal">Miscellaneous - Habitual Criminal</a>
+                    <a class="dropdown-item crime-item" value="miscellaneous_illegalAbortion">Miscellaneous - Illegal Abortion</a>
+                    <a class="dropdown-item crime-item" value="miscellaneous_kidnapping">Miscellaneous - Kidnapping</a>
+                    <a class="dropdown-item crime-item" value="miscellaneous_pervertingJustice">Miscellaneous - Perverting Justice</a>
+                    <a class="dropdown-item crime-item" value="miscellaneous_piracy">Miscellaneous - Piracy</a>
+                    <a class="dropdown-item crime-item" value="miscellaneous_returnFromTransportation">Miscellaneous - Returning from Transportation</a>
+                    <a class="dropdown-item crime-item" value="miscellaneous_other">Miscellaneous - Other</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item crime-item" value="royalOffences">Royal Offences - All</a>
+                    <a class="dropdown-item crime-item" value="royalOffences_coiningOffences">Royal Offences - Coining Offences</a>
+                    <a class="dropdown-item crime-item" value="royalOffences_religiousOffences">Royal Offences - Religious Offences</a>
+                    <a class="dropdown-item crime-item" value="royalOffences_seditiousLibel">Royal Offences - Seditious Libel</a>
+                    <a class="dropdown-item crime-item" value="royalOffences_seditiousWords">Royal Offences - Seditious Words</a>
+                    <a class="dropdown-item crime-item" value="royalOffences_seducingAllegiance">Royal Offences - Seducing from Allegiance</a>
+                    <a class="dropdown-item crime-item" value="royalOffences_taxOffences">Royal Offences - Tax Offences</a>
+                    <a class="dropdown-item crime-item" value="royalOffences_treason">Royal Offences - Treason</a>
+                    <a class="dropdown-item crime-item" value="royalOffences_other">Royal Offences - Other</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item crime-item" value="sexual">Sexual Offences - All</a>
+                    <a class="dropdown-item crime-item" value="sexual_assaultWithIntent">Sexual Offences - Assault with Intent</a>
+                    <a class="dropdown-item crime-item" value="sexual_assaultWithSodomiticalIntent">Sexual Offences - Assault with Sodomitical Intent</a>
+                    <a class="dropdown-item crime-item" value="sexual_bigamy">Sexual Offences - Bigamy</a>
+                    <a class="dropdown-item crime-item" value="sexual_indecentAssault">Sexual Offences - Indecent Assault</a>
+                    <a class="dropdown-item crime-item" value="sexual_keepingABrothel">Sexual Offences - Keeping a Brothel</a>
+                    <a class="dropdown-item crime-item" value="sexual_rape">Sexual Offences - Rape</a>
+                    <a class="dropdown-item crime-item" value="sexual_sodomy">Sexual Offences - Sodomy</a>
+                    <a class="dropdown-item crime-item" value="sexual_other">Sexual Offences - Other</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item crime-item" value="theft">Theft - All</a>
+                    <a class="dropdown-item crime-item" value="theft_animalTheft">Theft - Animal Theft</a>
+                    <a class="dropdown-item crime-item" value="theft_burglary">Theft - Burglary</a>
+                    <a class="dropdown-item crime-item" value="theft_embezzlement">Theft - Embezzlement</a>
+                    <a class="dropdown-item crime-item" value="theft_extortion">Theft - Extortion</a>
+                    <a class="dropdown-item crime-item" value="theft_gameLawOffence">Theft - Game Law Offences</a>
+                    <a class="dropdown-item crime-item" value="theft_grandLarceny">Theft - Grand Larceny (to 1827)</a>
+                    <a class="dropdown-item crime-item" value="theft_housebreaking">Theft - Housebreaking</a>
+                    <a class="dropdown-item crime-item" value="theft_mail">Theft - Mail Theft</a>
+                    <a class="dropdown-item crime-item" value="theft_pettyLarceny">Theft - Petty Larceny (to 1827)</a>
+                    <a class="dropdown-item crime-item" value="theft_pocketpicking">Theft - Pocketpicking</a>
+                    <a class="dropdown-item crime-item" value="theft_receiving">Theft - Receiving</a>
+                    <a class="dropdown-item crime-item" value="theft_shoplifting">Theft - Shoplifting</a>
+                    <a class="dropdown-item crime-item" value="theft_simpleLarceny">Theft - Simple Larceny (from 1827)</a>
+                    <a class="dropdown-item crime-item" value="theft_stealingFromMaster">Theft - Stealing from Master</a>
+                    <a class="dropdown-item crime-item" value="theft_theftFromPlace">Theft - theft from a specified place</a>
+                    <a class="dropdown-item crime-item" value="theft_other">Theft - Other</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item crime-item" value="violentTheft">Violent Theft - All</a>
+                    <a class="dropdown-item crime-item" value="violentTheft_highwayRobbery">Violent Theft - Highway Robbery</a>
+                    <a class="dropdown-item crime-item" value="violentTheft_robbery">Violent Theft - Robbery</a>
+                    <a class="dropdown-item crime-item" value="violentTheft_other">Violent Theft - Other</a>
+                  </div>
+                </li>
+
+                <li class="nav-item">
+                  <a class="nav-link disabled" id="crime-label" href="#">All</a>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Verdict
+                    </a>
+                    <div class="dropdown-menu" id="verdict-dropdown" value="" aria-labelledby="navbarDropdown">
+                      <a class="dropdown-item verdict-item" value="" href="#">All</a>
+                      <div class="dropdown-divider"></div>
+                      <a class="dropdown-item verdict-item" value="guilty">Guilty - All</a>
+                      <a class="dropdown-item verdict-item" value="guilty_chanceMedley">Guilty - Chance Medley</a>
+                      <a class="dropdown-item verdict-item" value="guilty_insane">Guilty - Insane</a>
+                      <a class="dropdown-item verdict-item" value="guilty_lesserOffence">Guilty - Lesser Offence</a>
+                      <a class="dropdown-item verdict-item" value="guilty_manslaughter">Guilty - Manslaughter</a>
+                      <a class="dropdown-item verdict-item" value="guilty_pleadedGuilty">Guilty - Pleaded Guilty</a>
+                      <a class="dropdown-item verdict-item" value="guilty_pleadedPartGuilty">Guilty - Pleaded Part Guilty</a>
+                      <a class="dropdown-item verdict-item" value="guilty_theftunder100s">Guilty - Theft under 100s</a>
+                      <a class="dropdown-item verdict-item" value="guilty_theftunder10s">Guilty - Theft under 10s</a>
+                      <a class="dropdown-item verdict-item" value="guilty_theftunder1s">Guilty - Theft under 1s</a>
+                      <a class="dropdown-item verdict-item" value="guilty_theftunder40s">Guilty - Theft under 40s</a>
+                      <a class="dropdown-item verdict-item" value="guilty_theftunder5s">Guilty - Theft under 5s</a>
+                      <a class="dropdown-item verdict-item" value="guilty_withRecommendation">Guilty - With Recommendation</a>
+                      <div class="dropdown-divider"></div>
+                      <a class="dropdown-item verdict-item" value="miscVerdict">Miscellaneous - All</a>
+                      <a class="dropdown-item verdict-item" value="miscVerdict_noAgreement">Miscellaneous - No Agreement</a>
+                      <a class="dropdown-item verdict-item" value="miscVerdict_postponed">Miscellaneous - Postponed</a>
+                      <a class="dropdown-item verdict-item" value="miscVerdict_unfitToPlead">Miscellaneous - Unfit to Plead</a>
+                      <div class="dropdown-divider"></div>
+                      <a class="dropdown-item verdict-item" value="notguilty">Not Guilty - All</a>
+                      <a class="dropdown-item verdict-item" value="notguilty_accidentalDeath">Not Guilty - Accidental Death</a>
+                      <a class="dropdown-item verdict-item" value="notguilty_directed">Not Guilty - Directed</a>
+                      <a class="dropdown-item verdict-item" value="notguilty_fault">Not Guilty - Fault</a>
+                      <a class="dropdown-item verdict-item" value="notguilty_noEvidence">Not Guilty - No Evidence</a>
+                      <a class="dropdown-item verdict-item" value="notguilty_nonComposMentis">Not Guilty - Non Compos Mentis</a>
+                      <a class="dropdown-item verdict-item" value="notguilty_noProsecutor">Not Guilty - No Prosecutor</a>
+                      <a class="dropdown-item verdict-item" value="notguilty_selfDefence">Not Guilty - Self Defence</a>
+                      <div class="dropdown-divider"></div>
+                      <a class="dropdown-item verdict-item" value="specialVerdict">Special Verdict</a>
+                    </div>
+                  </li>
+
+                  <li class="nav-item">
+                    <a class="nav-link disabled" id="verdict-label" href="#">All</a>
+                  </li>
+
+                  <li class="nav-item dropdown">
+                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Sentence
+                      </a>
+                      <div class="dropdown-menu" id="punishment-dropdown" value="" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item punishment-item" value="">All</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item punishment-item" value="corporal">Corporal - All</a>
+                        <a class="dropdown-item punishment-item" value="corporal_pillory">Corporal - Pillory</a>
+                        <a class="dropdown-item punishment-item" value="corporal_privateWhipping">Corporal - Private Whipping</a>
+                        <a class="dropdown-item punishment-item" value="corporal_publicWhipping">Corporal - Public Whipping</a>
+                        <a class="dropdown-item punishment-item" value="corporal_whipping">Corporal - Whipping</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item punishment-item" value="death">Death - All</a>
+                        <a class="dropdown-item punishment-item" value="death_burning">Death - Burning</a>
+                        <a class="dropdown-item punishment-item" value="death_deathAndDissection">Death - Death and Dissection</a>
+                        <a class="dropdown-item punishment-item" value="death_drawnAndQuartered">Death - Drawn and Quartered</a>
+                        <a class="dropdown-item punishment-item" value="death_executed">Death - Executed</a>
+                        <a class="dropdown-item punishment-item" value="death_hangingInChains">Death - Hanging in Chains</a>
+                        <a class="dropdown-item punishment-item" value="death_respited">Death - Respited</a>
+                        <a class="dropdown-item punishment-item" value="death_respitedForPregnancy">Death - Respited for Pregnancy</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item punishment-item" value="imprison">Imprisonment - All</a>
+                        <a class="dropdown-item punishment-item" value="imprison_hardLabour">Imprisonment - Hard Labour</a>
+                        <a class="dropdown-item punishment-item" value="imprison_houseOfCorrection">Imprisonment - House of Correction</a>
+                        <a class="dropdown-item punishment-item" value="imprison_insanity">Imprisonment - Insanity</a>
+                        <a class="dropdown-item punishment-item" value="imprison_newgate">Imprisonment - Newgate</a>
+                        <a class="dropdown-item punishment-item" value="imprison_otherInstitution">Imprisonment - Other Institution</a>
+                        <a class="dropdown-item punishment-item" value="imprison_penalServitude">Imprisonment - Penal Servitude</a>
+                        <a class="dropdown-item punishment-item" value="imprison_preventiveDetention">Imprisonment - Preventive Detention</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item punishment-item" value="miscPunish">Miscellaneous - All</a>
+                        <a class="dropdown-item punishment-item" value="miscPunish_branding">Miscellaneous - Branding</a>
+                        <a class="dropdown-item punishment-item" value="miscPunish_brandingOnCheek">Miscellaneous - Branding on Cheek</a>
+                        <a class="dropdown-item punishment-item" value="miscPunish_fine">Miscellaneous - Fine</a>
+                        <a class="dropdown-item punishment-item" value="miscPunish_forfeiture">Miscellaneous - Forfeiture</a>
+                        <a class="dropdown-item punishment-item" value="miscPunish_militaryNavalDuty">Miscellaneous - Military Naval Duty</a>
+                        <a class="dropdown-item punishment-item" value="miscPunish_sureties">Miscellaneous - Sureties</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item punishment-item" value="noPunish">No Punishment - All</a>
+                        <a class="dropdown-item punishment-item" value="noPunish_pardon">No Punishment - Pardon</a>
+                        <a class="dropdown-item punishment-item" value="noPunish_sentenceRespited">No Punishment - Sentence Respited</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item punishment-item" value="transport">Transportation</a>
+                      </div>
+                    </li>
+
+                    <li class="nav-item">
+                      <a class="nav-link disabled" id="punishment-label" href="#">All</a>
+                    </li>
+                
+              </ul>
+              <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" id="year-from" type="number" placeholder="From Year" aria-label="Year From">
+                to
+                <input class="form-control mr-sm-2" id="year-to" type="number" placeholder="To Year" aria-label="Year To">
+                <button class="btn btn-outline-success my-2 my-sm-0" id="submit" type="button">Search</button>
+              </form>
+            </div>
+          </nav>
+      <div class="ct-chart" id="chart" style="width: 100%; height: 70vh;"></div>
+    </body>
+  </html>
